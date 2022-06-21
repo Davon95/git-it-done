@@ -29,6 +29,9 @@ var getUserRepos = function (user) {
         } else {
             alert("Error: Github User Not Found");
         }
+    })
+    .catch(function(error) {
+        error = alert("Unable to connect to GitHub.");
     });
 };
 
@@ -68,20 +71,4 @@ var displayRepos = function(repos, searchTerm) {
         repoContainerEl.appendChild(repoEl);
     }
 };
-
-fetch(apiUrl)
-    .then(function(response) {
-        // Request was successful
-        if (response.ok) {
-            response.json().then(function(data) {
-                displayRepos(data, user);
-            });
-        } else {
-            alert('Error: GitHub User Not Found');
-        }
-    })
-    .catch(function(error) {
-        alert("unable to connect to GitHub");
-    });
-    
 userFormEl.addEventListener("submit", formSubmitHander);
